@@ -71,7 +71,7 @@ def pull_params_from_stack[**P, R](
 
   @wraps(func)
   def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
-    # Positional args take up the first n params. Remove them.
+    # Assume positional args take up the first n params. Remove them.
     positional_args_removed = islice(params, len(args), None)
     params_not_present_in_kwargs = [
       param for param in positional_args_removed if param not in kwargs.keys()
