@@ -1,0 +1,5 @@
+# Ensure all text files use LF line endings
+* text=auto eol=lf
+
+# Explicitly declare file types you care about, if any
+# e.g. *.py text

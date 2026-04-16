@@ -1,0 +1,68 @@
+load("@openapi_tools_generator_bazel//:defs.bzl", "openapi_generator")
+load("@pip_deps//:requirements.bzl", "requirement")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc_python//:defs.bzl", "python_proto_library")
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_python//python:py_library.bzl", "py_library")
+
+
+py_binary(
+    name = "simple_example",
+    srcs = ["simple_example.py"],
+    deps = [
+        "//src/lib",
+    ],
+)
+
+py_binary(
+    name = "proto_example",
+    srcs = ["proto_example.py"],
+    deps = [
+        ":example_py_pb_lib",
+        "//src/lib",
+    ],
+)
+
+py_binary(
+    name = "kubernetes_example",
+    srcs = ["kubernetes_example.py"],
+    deps = [
+        ":kubernetes_py_lib",
+        "//src/lib",
+    ],
+)
+
+python_proto_library(
+    name = "example_py_pb_lib",
+    protos = [":example_proto_lib"],
+)
+
+proto_library(
+    name = "example_proto_lib",
+    srcs = ["example.proto"],
+    visibility = ["//visibility:public"],
+)
+
+# Idiom borrowed from: https://github.com/OpenAPITools/openapi-generator-bazel/issues/22#issuecomment-1824898926
+openapi_generator(
+    name = "kubernetes",
+    additional_properties = {
+        "packageName": "openapi_client",
+    },
+    generator = "python",
+    # From https://raw.githubusercontent.com/kubernetes/kubernetes/refs/heads/master/api/openapi-spec/swagger.json
+    # TODO: Periodically refresh this file with content above.
+    spec = "kubernetes.json",
+)
+
+py_library(
+    name = "kubernetes_py_lib",
+    data = [":kubernetes"],
+    imports = ["./kubernetes"],
+    visibility = ["//visibility:public"],
+    deps = [
+        requirement("pydantic"),
+        requirement("python-dateutil"),
+        requirement("urllib3"),
+    ],
+)

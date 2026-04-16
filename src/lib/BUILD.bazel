@@ -1,0 +1,16 @@
+load("@pip_deps//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", "py_library")
+
+py_library(
+    name = "lib",
+    srcs = [
+        "decorators.py",
+        "protobuf.py",
+        "pydantic.py",
+        "var_stack.py",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        requirement("pydantic"),
+    ],
+)

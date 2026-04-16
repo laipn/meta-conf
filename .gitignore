@@ -1,0 +1,8 @@
+.venv
+.vscode
+MODULE.bazel.lock
+bazel-bin/
+bazel-meta-conf/
+bazel-out/
+bazel-testlogs/
+**/__pycache__/
