@@ -565,8 +565,7 @@ with let(prod_env="dev"):
       api_version="v1",
       kind="Pod",
       metadata=IoK8sApimachineryPkgApisMetaV1ObjectMeta(
-        name=f"{image_name}-{prod_env}",
-        labels={"app": image_name},
+        name=Lazy(lambda prod_env: "Webapp." + prod_env),
       ),
       spec=IoK8sApiCoreV1PodSpec(containers=[]),
     )
