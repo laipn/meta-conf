@@ -583,7 +583,7 @@ Code-templates don't separate out human-provided values in a separate file like 
 
 > Humans creating readable code to instantiate **Data Types**:
 
-Instantiating data-types also has its own approach where data-structures are instantiated incrementally (See Additional info). This avoids requiring data-structures to represent human-provided data. Instead of passing say a list of containers `image_names` we just push different values using  `with let(image_name=...):`.  Contrast that to how we were forced to represent [labels](#labels) in the textual-template section.
+Instantiating data-types also has its own approach where data-structures are instantiated incrementally via `@data_template`. This avoids requiring data-structures to represent human-provided data. Instead of passing say a list of containers `image_names` we just push different values using  `with let(image_name=...):`.  Contrast that to how we were forced to represent [labels](#labels) in the textual-template section.
 
 Incrementally building the data-structure also makes it obvious the relationship human-provided-data has with the data-type being created.  `image_name` in this example is related to creating the `k8s.Container` part of `k8s.PodSpec` whereas *prod_env* is related to building the entire
 
