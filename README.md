@@ -388,7 +388,7 @@ Person = data_template(Person)
 
 def CreatePerson():
   return Person(name="Alice", id=1, phones=[
-    PhoneNumber(number="123-456-7890")
+    PhoneNumber(number="123-456-7890"),
     PhoneNumber(number="098-765-4321")])
 
 ```
