@@ -108,7 +108,7 @@ def main():
   #                                    '-c',
   #                                    'tail -n+1 -f /var/log/app.log'],
   #                           'image': 'alpine:3.18.0',
-  #                           'name': 'alpine-logsaver',
+  #                           'name': 'nginx-logsaver',
   #                           'volume_mounts': [{'mount_path': '/var/log/app.log',
   #                                              'name': 'app-log'}]}]}}
 
