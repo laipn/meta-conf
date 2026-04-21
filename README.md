@@ -585,6 +585,6 @@ Code-templates don't separate out human-provided values in a separate file like 
 
 Instantiating data-types also has its own approach where data-structures are instantiated incrementally via `@data_template`. This avoids requiring data-structures to represent human-provided data. Instead of passing say a list of containers `image_names` we just push different values using  `with let(image_name=...):`.  Contrast that to how we were forced to represent [labels](#labels) in the textual-template section.
 
-Incrementally building the data-structure also makes it obvious the relationship human-provided-data has with the data-type being created.  `image_name` in this example is related to creating the `k8s.Container` part of `k8s.PodSpec` whereas *prod_env* is related to building the entire
+Incrementally building the data-structure (`IoK8sApiCoreV1Pod`) also makes it obvious the relationship human-provided-data has with the data-type being created.  `image_name` in this example is related to creating the `IoK8sApiCoreV1Container` part of `IoK8sApiCoreV1Pod` whereas *prod_env* is human-provided data that is relevant to all aspects of building `IoK8sApiCoreV1Pod`.
 
 As such the "code-template" approach is a specialization of the "free-from" *programming library* approach.  It provides an idiom how to separate "human-values" (*Var Stack* *variables*) from the *templates* that rely on them; and provides idioms on how to instantiate the data-types (`@data_templates`) incrementally.
