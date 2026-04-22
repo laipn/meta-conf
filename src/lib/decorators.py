@@ -19,7 +19,6 @@ def template[**P, R](
 ) -> Callable[..., R]:
   """Implicitly pulls parameters for *func* from *var_stack*."""
 
-  # return pull_params_from_stack(eval_lazy(func, var_stack), None, var_stack)
   return pull_params_from_stack(func, None, var_stack)
 
 
