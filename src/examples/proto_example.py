@@ -14,8 +14,8 @@ def id(name):
 
 
 @Lazy
-def international_number(number):
-  return f"+1 {number}"
+def international_number(local_number):
+  return f"+1 {local_number}"
 
 
 def main():
