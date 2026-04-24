@@ -167,6 +167,9 @@ What we need here is "templating" behavior but without being limited to textual 
 
 Contemplate the definition of "template". With textual templating, each occurrence of a variable is replaced by a user-specified parameter. Note that standard programming functions used with read-only variables accomplish the same thing.  They return their contents with variables replaced with user-supplied arguments.  So let's call this approach a **Code Templating**.
 
+> [!IMPORTANT]
+> TODO: Add pylance rules to enforce that all variables in a template are read-only.
+
 The main downside of using functions as templates in this way is that arguments must still be passed explicitly:
 
 ```python
