@@ -23,8 +23,8 @@ def template[**P, R](
 
 
 def data_template[T, V](
-  callback: Callable[[V, T], None] | None,
   data_type: type[T],
+  on_creation: Callable[[V, T], None] | None,
   params: Iterable[str],
   var_stack: VarStack,
 ) -> Callable[..., T]:
@@ -35,10 +35,10 @@ def data_template[T, V](
   @wraps(data_type, updated=())
   def wrapper(*args: Any, **kwargs: Any) -> T:
     instance = data_type(*args, **kwargs)
-    if callback:
-      first_param_name = list(inspect.signature(callback).parameters.keys())[0]
+    if on_creation:
+      first_param_name = list(inspect.signature(on_creation).parameters.keys())[0]
       first_param = var_stack.peek(first_param_name)
-      callback(first_param, instance)
+      on_creation(first_param, instance)
     return instance
 
   return pull_params_from_stack(wrapper, params, var_stack)
